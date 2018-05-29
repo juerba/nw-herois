@@ -13,13 +13,15 @@ class CreateHeroiFotoTable extends Migration
      */
     public function up()
     {
-        Schema::create('TB_Heroi_Foto', function (Blueprint $table) {
+        Schema::create('tb_heroi_foto', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('HeroiID')->unsigned();
             $table->foreign('HeroiID')->references('id')->on('TB_Heroi');
             $table->binary('Foto');
             $table->text('Descricao');
             $table->boolean('Ativo');
+            $table->date('DataCriacao'); 
+            $table->date('DataAlteracao'); 
         });
     }
 
@@ -30,6 +32,6 @@ class CreateHeroiFotoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('heroi_foto');
+        Schema::dropIfExists('tb_heroi_foto');
     }
 }

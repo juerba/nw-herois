@@ -13,13 +13,15 @@ class CreateHeroiEspecialidadeTable extends Migration
      */
     public function up()
     {
-        Schema::create('TB_Heroi_Especialidade', function (Blueprint $table) {
+        Schema::create('tb_heroi_especialidade', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('HeroiID')->unsigned();
             $table->foreign('HeroiID')->references('id')->on('TB_Heroi');
             $table->integer('EspecialidadeID')->unsigned();
             $table->foreign('EspecialidadeID')->references('id')->on('TB_Especialidade');
             $table->boolean('Ativo');
+            $table->date('DataCriacao'); 
+            $table->date('DataAlteracao'); 
         });
     }
 
@@ -30,6 +32,6 @@ class CreateHeroiEspecialidadeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('heroi_especialidade');
+        Schema::dropIfExists('tb_heroi_especialidade');
     }
 }

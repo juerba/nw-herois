@@ -13,7 +13,7 @@ class CreateHeroiTable extends Migration
      */
     public function up()
     {
-        Schema::create('TB_Heroi', function (Blueprint $table) {
+        Schema::create('tb_heroi', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ClaID')->unsigned();
             $table->foreign('ClaID')->references('id')->on('TB_Cla');
@@ -27,6 +27,8 @@ class CreateHeroiTable extends Migration
             $table->decimal('VelocidadeAtaque',4,2);
             $table->integer('VelocidadeMovimento');
             $table->boolean('Ativo');
+            $table->date('DataCriacao'); 
+            $table->date('DataAlteracao'); 
         });
     }
 
@@ -37,6 +39,6 @@ class CreateHeroiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('heroi');
+        Schema::dropIfExists('tb_heroi');
     }
 }

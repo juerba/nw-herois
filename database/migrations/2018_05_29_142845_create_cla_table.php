@@ -13,10 +13,12 @@ class CreateClaTable extends Migration
      */
     public function up()
     {
-        Schema::create('TB_Cla', function (Blueprint $table) {
+        Schema::create('tb_cla', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nome');
             $table->boolean('Ativo');
+            $table->date('DataCriacao'); 
+            $table->date('DataAlteracao'); 
         });
     }
 
@@ -27,6 +29,6 @@ class CreateClaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cla');
+        Schema::dropIfExists('tb_cla');
     }
 }

@@ -13,10 +13,12 @@ class CreateEspecialidadeTable extends Migration
      */
     public function up()
     {
-        Schema::create('TB_Especialidade', function (Blueprint $table) {
+        Schema::create('tb_especialidade', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nome');
             $table->boolean('Ativo');
+            $table->date('DataCriacao'); 
+            $table->date('DataAlteracao'); 
         });
     }
 
@@ -27,6 +29,6 @@ class CreateEspecialidadeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especialidade');
+        Schema::dropIfExists('tb_especialidade');
     }
 }

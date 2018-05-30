@@ -19,7 +19,8 @@ class CreateHeroiTable extends Migration
             $table->foreign('ClaID')->references('id')->on('TB_Cla');
             $table->integer('TipoHeroiID')->unsigned();
             $table->foreign('TipoHeroiID')->references('id')->on('TB_Tipo_Heroi');
-            $table->binary('Thumb');
+            $table->string('Especialidade');
+            $table->string('Thumb');
             $table->string('Nome');
             $table->integer('Vida');
             $table->integer('Defesa');

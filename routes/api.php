@@ -17,6 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::resource('cla','ClaController',['only'=>['index','store','show','update']]);
-Route::resource('cla.herois','HeroiController',['only'=>['index','store','show','update','destroy']]);
+//Route::resource('cla','ClaController',['only'=>['index','store','show','update']]);
+//Route::resource('herois','HeroiController',['only'=>['index','store','show','update','destroy']]);
 

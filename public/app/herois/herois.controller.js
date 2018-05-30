@@ -4,17 +4,21 @@ Herois.controller('heroisController', function heroisController($scope, $http, $
      $scope.lastPage=1;
      $scope.loadMoreText='Load More Heroes...';
      
-     $http.get(constants.API_URL + "heroi", {params: { page: $scope.currentPage }})
+     
+     $http.get(constants.API_URL + "herois", {params: { page: $scope.currentPage }})
         .success(function(response) {
+
             $scope.herois = response.data;
             $scope.currentPage = response.current_page;
             $scope.lastPage = response.last_page;
+            
+            console.log($response);
              
             if($scope.currentPage >= $scope.lastPage){
                 $scope.loadMoreText='All Heroes Loaded!';
             }
         });
-     
+  /*   
     $scope.loadMoreHerois = function() {
         $scope.currentPage++;
          
@@ -68,4 +72,5 @@ Herois.controller('heroisController', function heroisController($scope, $http, $
     $scope.closeModal = function() {
         $('#addHeroiModal').modal('hide');
     }
+    */
 });

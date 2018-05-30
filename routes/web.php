@@ -11,6 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('herois');
+Route::resource('/herois','HeroiController');
+Route::get('/addherois',function() {
+	$cla = DB::select('select id,nome from tb_cla where ativo = 1');
+	$tipo = DB::select('select id,nome from tb_tipo_heroi where ativo = 1');
+	$especialidade = DB::select('select id,nome from tb_especialidade where ativo = 1');
+	$params = [
+		'clas'=>$cla,
+		'tipo'=>$tipo,
+		'especialidade'=>$especialidade
+	];
+	return view('herois_create',['params'=>$params]);
 });
+/*Route::get('/', function () {
+    return view('herois');
+});*/

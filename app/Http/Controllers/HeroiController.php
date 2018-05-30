@@ -4,66 +4,68 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Heroi;
+use App\Http\Requests;
+use App\Cla;
 
 class HeroiController extends Controller
 {
 
-	public function index(){
-		$heroi = Heroi::paginate();
-		return $heroi;
+	public function index($claID){
+		return Heroi::ofCla($claID)->paginate();
 	}
    
-	public function show($id){
-	    $heroi = Heroi::findOrFail($id);
-	         
-	    return $heroi;
+	public function show($claID,$heroiID){
+	   $heroi = Heroi::ofCla($claID)->findOrFail($heroiID);
+       return $heroi;    
 	}
     
-    public function store(Request $request, $claID=1, $tipoID=1){
+    public function store(Request $request, $claID){
     	
         $now = date('Y-m-d H:i:s', strtotime('now'));
 
-        $heroi = Heroi::create([
-    		'nome'=> $request->input('nome'),
-    		'claID'=> $claID,
-    		'tipoHeroiID'=>$tipoID,
-    		'thumb'=>0,
-        	'vida'=>$request->input('vida'),
-        	'defesa'=>$request->input('defesa'),
-        	'dano'=>$request->input('dano'),
-        	'velocidadeAtaque'=>$request->input('velocidadeAtaque'),
-        	'velocidadeMovimento'=>$request->input('velocidadeMovimento'),
-            'ativo'=>true,
-            'dataCriacao'=>$now,
-            'dataAlteracao'=>$now
-    	]);
-		
-		return $heroi;
-	}
-    public function update(Request $request){
-     
-        $now = date('Y-m-d H:i:s', strtotime('now'));
-        $heroiID = $request->input('id');
-        $heroi = Heroi::findOrFail($heroiID);
-        echo $heroi;
-        echo "lalala";
-        $heroi->update([
+        $cla = Cla::findOrFail($claID);
+
+        $cla->herois()->save(new Heroi([
             'nome'=> $request->input('nome'),
-            'claID'=> $claID,
-            'tipoHeroiID'=>$tipoID,
+            'tipoHeroiID'=>$request->input('tipoHeroiID'),
             'thumb'=>0,
             'vida'=>$request->input('vida'),
             'defesa'=>$request->input('defesa'),
             'dano'=>$request->input('dano'),
             'velocidadeAtaque'=>$request->input('velocidadeAtaque'),
             'velocidadeMovimento'=>$request->input('velocidadeMovimento'),
+            'ativo'=>true,
+            'dataCriacao'=>$now,
+            'dataAlteracao'=>$now
+        ]));
+		return $cla->herois;
+	}
+
+    public function update(Request $request, $claID, $heroiID){
+        $heroi = Heroi::ofCla($claID)->findOrFail($heroiID);
+        $now = date('Y-m-d H:i:s', strtotime('now'));
+        
+        $heroi->update([
+            'nome'=> $request->input('nome'),
+            'claID'=> $claID,
+            'vida'=>$request->input('vida'),
+            'defesa'=>$request->input('defesa'),
+            'dano'=>$request->input('dano'),
+            'TipoHeroiID'=>$request->input('TipoHeroiID'),
+            'velocidadeAtaque'=>$request->input('velocidadeAtaque'),
+            'velocidadeMovimento'=>$request->input('velocidadeMovimento'),
+            'thumb'=>0,
             'ativo'=>$request->input('ativo'),
             'dataAlteracao'=>$now
         ]);
-        
         return $heroi;
+    }
+        public function destroy($claID,$heroiID){
 
+        $heroi = Heroi::ofCla($claID)->findOrFail($heroiID);
+        $heroi->delete();
+        return $heroi;
     }
 }
-}
+
 

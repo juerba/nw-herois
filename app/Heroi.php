@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Heroi extends Model
 {
+    //use SoftDeletes;
+    
     protected $table = 'tb_heroi';
     public $timestamps = false;
     
@@ -20,7 +23,7 @@ class Heroi extends Model
     }
     
     public function scopeOfCla($query, $claId){
-    	return $query->where('cla_id', $claId);
+    	return $query->where('claid', $claId);
 	}
 
 	

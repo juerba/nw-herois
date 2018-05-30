@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::resource('cla','ClaController');
-Route::resource('herois','HeroiController');
+Route::resource('cla','ClaController',['only'=>['index','store','show','update']]);
+Route::resource('cla.herois','HeroiController',['only'=>['index','store','show','update','destroy']]);
 

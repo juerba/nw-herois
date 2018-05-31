@@ -13,9 +13,9 @@
 
 Route::resource('/herois','HeroiController');
 Route::get('/addherois',function() {
-	$cla = DB::select('select id,nome from tb_cla where ativo = 1');
-	$tipo = DB::select('select id,nome from tb_tipo_heroi where ativo = 1');
-	$especialidade = DB::select('select id,nome from tb_especialidade where ativo = 1');
+	$cla = DB::select('select id,nome from tb_cla');
+	$tipo = DB::select('select id,nome from tb_tipo_heroi');
+	$especialidade = DB::select('select id,nome from tb_especialidade');
 	$params = [
 		'clas'=>$cla,
 		'tipo'=>$tipo,

@@ -16,7 +16,6 @@ class CreateTipoTable extends Migration
         Schema::create('tb_tipo_heroi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nome');
-            $table->boolean('Ativo');
             $table->date('DataCriacao'); 
             $table->date('DataAlteracao'); 
         });

@@ -16,7 +16,6 @@ class CreateClaTable extends Migration
         Schema::create('tb_cla', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nome');
-            $table->boolean('Ativo');
             $table->date('DataCriacao'); 
             $table->date('DataAlteracao'); 
         });

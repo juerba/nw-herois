@@ -17,7 +17,6 @@ class ClaController extends Controller
     	
         $cla = Cla::create([
     		'nome'=> $request->input('nome'),
-            'ativo'=>true,
             'dataCriacao'=>$now,
             'dataAlteracao'=>$now
     	]);

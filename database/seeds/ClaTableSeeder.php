@@ -14,7 +14,6 @@ class ClaTableSeeder extends Seeder
     {	$now = date('Y-m-d H:i:s', strtotime('now'));
         DB::table('tb_cla')->insert([
         	'nome'=>'New Way',
-        	'ativo'=>true,
         	'DataCriacao'=>$now,
         	'DataAlteracao'=>$now
         ]);

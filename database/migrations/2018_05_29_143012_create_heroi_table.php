@@ -27,7 +27,6 @@ class CreateHeroiTable extends Migration
             $table->integer('Dano');
             $table->decimal('VelocidadeAtaque',4,2);
             $table->integer('VelocidadeMovimento');
-            $table->boolean('Ativo');
             $table->date('DataCriacao'); 
             $table->date('DataAlteracao'); 
         });

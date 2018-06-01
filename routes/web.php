@@ -12,6 +12,10 @@
 */
 
 Route::resource('/herois','HeroiController');
+Route::resource('/busca','SearchController');
+Route::get('/',function() {
+	return redirect("herois");
+});
 Route::get('/addherois',function() {
 	$cla = DB::select('select id,nome from tb_cla');
 	$tipo = DB::select('select id,nome from tb_tipo_heroi');

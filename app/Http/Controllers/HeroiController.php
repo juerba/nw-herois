@@ -13,13 +13,11 @@ class HeroiController extends Controller
 {
 
 	public function index(){
-	    //$tipo = DB::select('select id,nome from tb_tipo_heroi');
-       	//$herois = Heroi::all();
         $herois =  DB::select('select h.thumb,h.id,h.nome,t.nome as tipo from tb_heroi h inner join tb_tipo_heroi t on h.tipoHeroiID = t.id');
-        return view("herois")->with('herois',$herois);
-        //return view('herois', ["herois"=>$herois,"tipo"=>$tipo]);
-    
-        //return view("herois")->with('herois',$herois);
+        $especialidades = DB::select('select id,nome from tb_especialidade');
+        $cla = DB::select('select id,nome from tb_cla');
+        $tipo = DB::select('select id,nome from tb_tipo_heroi');
+        return view("herois",['herois'=>$herois,'especialidades'=>$especialidades, 'clas'=>$cla, 'tipos'=>$tipo]);
 	}
    
 	public function show($heroiID){
